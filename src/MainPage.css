@@ -1,0 +1,440 @@
+body {
+  background-color: #56642D;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.keyhole-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 999;
+}
+
+.keyhole-video {
+  width: 80vh;
+  height: auto;
+  object-fit: contain;
+  mask-image: url('/public/videos/keyhole-svgrepo-com.svg'); /* you’ll add this SVG file */
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  -webkit-mask-image: url('/public/videos/keyhole-svgrepo-com.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+@font-face {
+  font-family: 'League spartan';
+  src: url('/public/fonts/LeagueSpartan-Regular.ttf') format('truetype');
+}
+
+.bottom-text-wrapper {
+    font-family: 'league spartan', serif;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 18vw; /* Adjust depending on your font-size */
+  overflow: hidden;
+  z-index: -1000;
+  pointer-events: none;
+
+}
+
+.bottom-text {
+  position: absolute;
+  bottom: -3vw; /* Hides top of letters slightly */
+  left: 0;
+  font-size: 18vw; /* Responsive font size */
+  font-weight: 900;
+  white-space: nowrap;
+  color: #FFD700;
+  text-transform: uppercase;
+  z-index: 0;
+  animation: scrollText 200s linear infinite;
+}
+
+.bottom-text::after {
+  content: " DE KRACHTKAMER";
+  margin-left: 5vw;
+}
+
+/* Smooth scrolling */
+@keyframes scrollText {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.site-header {
+    font-family: 'league spartan', serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 95%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  z-index: 1000;
+}
+
+.logo img {
+    margin-top: 5rem;
+    margin-left: -3rem;
+  height: 200px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-family: 'LeagueSpartan', sans-serif;
+  font-weight: 600;
+}
+
+.nav-links a {
+    font-family: 'league spartan', serif;
+    text-transform: capitalize;
+  color: #FFD700;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.cta-button {
+  font-family: 'league spartan', serif;
+  letter-spacing: 0.1rem;
+  color: #FFD700;
+  background-color: #56642D;
+  border: 4px solid #FFD700;
+  padding: 1rem 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  background-color: #FFD700;
+  color: #56642D;
+}
+
+/* === REVIEW CAROUSEL === */
+
+.review-carousel-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+  margin-top: 10vh; /* Push section below full viewport height */
+  min-height: 100vh;  /* Make it a full screen section */
+  position: relative;
+  z-index: 10;
+}
+
+.carousel-heading-group {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "League Spartan", sans-serif;
+}
+
+.carousel-subheading {
+  font-size: 0.8rem;
+  color: #111;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.carousel-heading {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 700;
+  color: #FFD700;
+  padding-top: 10PX;
+}
+
+.carousel-description {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  color: #111;
+  font-weight: 400;
+  line-height: 1;
+  padding-top: 20px;
+  margin-bottom: 2rem;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 400px;
+  overflow: visible;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.carousel-card {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s ease;
+  width: 300px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  background: #839745;
+
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 5px;
+}
+
+.review-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding-top: 15px;
+}
+
+.review-info {
+  font-family: 'League Spartan', serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  text-align: center;
+  color: #FFD700;
+  padding: 0; /* remove extra spacing */
+  margin: 0;
+}
+
+.review-rating {
+  color: #FFD700; /* Yellow stars */
+  font-size: 1.4rem; /* Slightly larger */
+  font-family: 'League Spartan', serif;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.review-score {
+  color: #333; /* Optional: keep 5.0 in a darker color */
+  margin-left: 0.25rem;
+  font-size: 1.2rem;
+}
+
+.review-context{
+    font-family: 'League Spartan', serif;
+    font-size: 1.3rem
+}
+
+.carousel-card.center {
+  opacity: 1;
+  transform: scale(1) rotate(0deg) translateX(0);
+  z-index: 3;
+  visibility: visible;
+}
+
+.carousel-card.left {
+  opacity: 1;
+  transform: scale(0.9) rotate(-8deg) translateX(-420px);
+  z-index: 2;
+}
+
+.carousel-card.right {
+  opacity: 1;
+  transform: scale(0.9) rotate(8deg) translateX(420px);
+  z-index: 2;
+}
+
+.carousel-card.hidden {
+  opacity: 0;
+  transform: scale(0.8) translateY(100px);
+  z-index: 0;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden; /* 👈 Add this */
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 4;
+  color: inherit;
+  padding: 0 20px;
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: gray;
+  opacity: 0.4;
+  transition: 0.3s ease;
+}
+
+.indicator-dot.active {
+  opacity: 1;
+  background: yellow; /* change if needed */
+}
+
+.gym-intro-section {
+  padding: 80px 20px;
+  font-family: 'League Spartan', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gym-intro-content {
+  max-width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+}
+
+.gym-intro-text {
+  flex: 1 1 500px;
+}
+
+.gym-intro-text h5 {
+  color: #888;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.gym-intro-text h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.gym-intro-text p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.feature .icon {
+  font-size: 28px;
+}
+
+.feature strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.feature p {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.buttons button {
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.buttons button:first-child {
+  background-color: black;
+  color: white;
+}
+
+.link-button {
+  background: none;
+  color: black;
+  text-decoration: underline;
+}
+
+.gym-intro-image {
+  flex: 1 1 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-placeholder {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #888;
+  border-radius: 10px;
+}
