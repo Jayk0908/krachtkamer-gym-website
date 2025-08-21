@@ -1,3 +1,18 @@
+css/* CMS Editing Styles */
+.cms-editable-hover {
+  transition: all 0.2s ease;
+}
+
+.cms-editable-hover:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  border-radius: 4px;
+}
+
+.cms-editable-hover:hover .cms-edit-indicator {
+  opacity: 1 !important;
+}
+
 body {
   background-color: #56642D;
   margin: 0;

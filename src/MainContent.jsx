@@ -1,29 +1,28 @@
-import "../MainPage.css";
-import "../EntranceAnimation.css"
+import "./MainPage.css";
+import "./EntranceAnimation.css"
 import { useState, useEffect } from "react";
 
 const reviews = [
   {
     name: "Indra M.",
-    photo: "https://via.placeholder.com/80", // ← fake photo for demo
+    photo: "https://via.placeholder.com/80",
     text: "QFR is the best solution for anyone looking to take control of their finances. The analysis is detailed, features are comprehensive, and the interface is incredibly user-friendly.",
   },
   {
-    name: "Rina P.",
-    photo: "https://via.placeholder.com/80", // ← fake photo for demo
+    name: "Rina P.", 
+    photo: "https://via.placeholder.com/80",
     text: "QFR has helped me manage my business finances more efficiently. The detailed and accurate reports make financial planning much easier. Highly recommended for entrepreneurs!",
   },
   {
     name: "Maya L.",
-    photo: "https://via.placeholder.com/80", // ← fake photo for demo
+    photo: "https://via.placeholder.com/80",
     text: "Data security and ease of access are my top priorities, and QFR delivers both. Now I can manage my personal finances with peace of mind.",
   },
-    {
+  {
     name: "Jay K.",
-    photo: "https://via.placeholder.com/80", // ← fake photo for demo
+    photo: "https://via.placeholder.com/80",
     text: "QFR is the best solution for anyone looking to take control of their finances. The analysis is detailed, features are comprehensive, and the interface is incredibly user-friendly.",
   },
-  // Add 6 more placeholder reviews if needed
 ];
 
 export default function MainContent({ visible }) {
@@ -58,24 +57,30 @@ export default function MainContent({ visible }) {
   };
 
   const getClass = (i) => {
-  const center = index;
-  const left = (index - 1 + reviews.length) % reviews.length;
-  const right = (index + 1) % reviews.length;
+    const center = index;
+    const left = (index - 1 + reviews.length) % reviews.length;
+    const right = (index + 1) % reviews.length;
 
-  if (i === center) return "carousel-card center";
-  if (i === left) return "carousel-card right";
-  if (i === right) return "carousel-card left";
-  return "carousel-card hidden";
-};
+    if (i === center) return "carousel-card center";
+    if (i === left) return "carousel-card right";
+    if (i === right) return "carousel-card left";
+    return "carousel-card hidden";
+  };
 
   return (
     <div className={`main-content ${visible ? "visible" : ""}`}>
       <header className="site-header">
         <div className="logo"></div>
         <nav className="nav-links">
-          <a href="#abonnementen">ABONNEMENTEN</a>
-          <a href="#locatie">LOCATIE</a>
-          <button className="cta-button">WORD LID</button>
+          <a href="#abonnementen">
+            ABONNEMENTEN
+          </a>
+          <a href="#locatie">
+            LOCATIE
+          </a>
+          <button className="cta-button">
+            WORD LID
+          </button>
         </nav>
       </header>
 
@@ -91,7 +96,10 @@ export default function MainContent({ visible }) {
       </div>
 
       <div className="bottom-text-wrapper">
-        <div className="bottom-text" style={{ "--text-offset-x": "-500px" }}>
+        <div
+          className="bottom-text"
+          style={{ "--text-offset-x": "-500px" }}
+        >
           DE KRACHTKAMER
         </div>
       </div>
@@ -99,30 +107,51 @@ export default function MainContent({ visible }) {
       <section className="gym-intro-section">
         <div className="gym-intro-content">
           <div className="gym-intro-text">
-            <h5>Toekomst</h5>
-            <h2>Ontdek de voordelen van onze sportschool</h2>
+            <h5>
+              Toekomst
+            </h5>
+            
+            <h2>
+              Ontdek de voordelen van onze sportschool
+            </h2>
+            
             <div className="features">
               <p>
                 Bij onze futuristische sportschool bieden we de nieuwste technologieën en
                 gepersonaliseerde trainingservaringen. Sluit je aan en ervaar de toekomst van fitness.
               </p>
+              
               <div className="feature">
                 <span className="icon">🏋️</span>
                 <div>
-                  <strong>Geavanceerde Apparatuur</strong>
-                  <p>Train met de nieuwste fitnessapparatuur voor optimale resultaten en efficiëntie.</p>
+                  <strong>
+                    Geavanceerde Apparatuur
+                  </strong>
+                  <p>
+                    Train met de nieuwste fitnessapparatuur voor optimale resultaten en efficiëntie.
+                  </p>
                 </div>
               </div>
+              
               <div className="feature">
                 <span className="icon">🤝</span>
                 <div>
-                  <strong>Persoonlijke Training</strong>
-                  <p>Krijg een op maat gemaakt trainingsprogramma dat is afgestemd op jouw doelen.</p>
+                  <strong>
+                    Persoonlijke Training
+                  </strong>
+                  <p>
+                    Krijg een op maat gemaakt trainingsprogramma dat is afgestemd op jouw doelen.
+                  </p>
                 </div>
               </div>
+              
               <div className="buttons">
-                <button>Aanmelden</button>
-                <button className="link-button">Meer &rarr;</button>
+                <button>
+                  Aanmelden
+                </button>
+                <button className="link-button">
+                  Meer →
+                </button>
               </div>
             </div>
           </div>
@@ -132,31 +161,42 @@ export default function MainContent({ visible }) {
         </div>
       </section>
 
-
       <section className="review-carousel-section">
         <div className="carousel-heading-group">
-          <span className="carousel-subheading">WAT ONZE GASTEN ZEGGEN</span>
-          <h2 className="carousel-heading">EERLIJKE FEEDBACK VAN ONZE FANTASTISCHE SPORTERS</h2>
+          <span className="carousel-subheading">
+            WAT ONZE GASTEN ZEGGEN
+          </span>
+          
+          <h2 className="carousel-heading">
+            EERLIJKE FEEDBACK VAN ONZE FANTASTISCHE SPORTERS
+          </h2>
+          
           <p className="carousel-description">
             Sociale bewijskracht vergroot vertrouwen. <br/> Lees wat anderen écht zeggen over onze sportschool.
           </p>
         </div>
+        
         <div className="carousel-container">
           <div className="carousel">
             {reviews.map((review, i) => (
               <div key={i} className={getClass(i)}>
                 <div className="review-header">
-                {review.photo && <img src={review.photo} alt={review.name} className="review-photo" />}
-                <div className="review-info">
-                <p><strong>{review.name}</strong></p>
-                </div>
+                  {review.photo && <img src={review.photo} alt={review.name} className="review-photo" />}
+                  <div className="review-info">
+                    <p>
+                      <strong>{review.name}</strong>
+                    </p>
+                  </div>
                 </div>
                 <p className="review-rating">★★★★★ <span className="review-score">5.0</span></p>
-                <p className="review-context">{review.text}"</p>
+                <p className="review-context">
+                  {review.text}"
+                </p>
               </div>
             ))}
           </div>
         </div>
+        
         <div className="carousel-indicators">
           {reviews.map((_, i) => (
             <span

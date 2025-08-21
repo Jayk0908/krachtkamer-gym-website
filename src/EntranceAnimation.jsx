@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../EntranceAnimation.css";
+import "./EntranceAnimation.css";
 
 const COLORS = ["#FFD700", "#56642D", "#F5E0C8", "#D4AC0D"];
 
