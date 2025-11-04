@@ -1,6 +1,8 @@
 import "./MainPage.css";
 import "./EntranceAnimation.css"
 import { useState, useEffect, useRef } from "react";
+import BookingModal from "./components/BookingModal";
+import BookingWidget from "./components/BookingWidget";
 
 const reviews = [
   {
@@ -26,7 +28,7 @@ const reviews = [
 ];
 
 // Sliding Banner Component
-const SlidingBanner = () => {
+const SlidingBanner = ({ onCTAClick }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
   const imagesRef = useRef(null);
@@ -282,7 +284,7 @@ const SlidingBanner = () => {
       {/* CTA Button - only show at beginning or end with different positioning */}
       {showButton && (
         <div className={`cta-overlay ${isAtStart ? 'start' : 'end'}`}>
-          <button className="banner-cta-button">
+          <button className="banner-cta-button" onClick={onCTAClick}>
             Lid Worden
           </button>
         </div>
@@ -316,6 +318,7 @@ const SlidingBanner = () => {
 export default function MainContent({ visible }) {
   const [index, setIndex] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -366,7 +369,7 @@ export default function MainContent({ visible }) {
           <a href="#locatie">
             LOCATIE
           </a>
-          <button className="cta-button">
+          <button className="cta-button" onClick={() => setBookingOpen(true)}>
             WORD LID
           </button>
         </nav>
@@ -393,7 +396,9 @@ export default function MainContent({ visible }) {
       </div>
 
       {/* Replaced gym-intro-section with SlidingBanner */}
-      <SlidingBanner />
+      <SlidingBanner onCTAClick={() => setBookingOpen(true)} />
+      <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} clientEmail="jayklos2002@gmail.com" />
+      <BookingWidget clientEmail="jayklos2002@gmail.com" />
 
       <section className="review-carousel-section">
         <div className="carousel-heading-group">
