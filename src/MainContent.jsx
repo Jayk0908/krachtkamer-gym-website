@@ -37,31 +37,31 @@ const SlidingBanner = ({ onCTAClick }) => {
   const bannerImages = [
     {
       id: 1,
-      src: "/videos/eerste picca.png",
+      src: "/videos/eerste picca.webp",
       alt: "Eerste picca",
       width: "1700px"
     },
     {
       id: 2,
-      src: "/videos/picca tussen 1.png",
+      src: "/videos/picca tussen 1.webp",
       alt: "Picca 2",
       width: "900px"
     },
     {
       id: 3,
-      src: "/videos/picca tussen 2.png",
+      src: "/videos/picca tussen 2.webp",
       alt: "Workout session",
       width: "900px"
     },
     {
       id: 4,
-      src: "/videos/picca tussen 3.png",
+      src: "/videos/picca tussen 3.webp",
       alt: "Cardio equipment",
       width: "900px"
     },
     {
       id: 5,
-      src: "/videos/last picca.png",
+      src: "/videos/last picca.webp",
       alt: "Cardio equipment",
       width: "1700px"
     }
