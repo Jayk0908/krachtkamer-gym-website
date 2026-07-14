@@ -3,7 +3,7 @@
 
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
-async function httpGet(path, params = {}) {
+async function httpGet(path, params = {}, options = {}) {
   const url = new URL(`${API_BASE}${path}`, window.location.origin);
   Object.entries(params).forEach(([k, v]) => {
     if (v !== undefined && v !== null && v !== "") url.searchParams.set(k, v);
@@ -12,6 +12,7 @@ async function httpGet(path, params = {}) {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
+    cache: options.noStore ? "no-store" : "default",
   });
   if (!res.ok) throw new Error(`GET ${path} failed: ${res.status}`);
   return res.json();
@@ -190,31 +191,20 @@ export function clearAvailabilityCache(domain, clientEmail, dateISO) {
   }
 }
 
-// Get available slots (planned endpoint). Fallback generates slots from operating hours
+// Get available slots — always fetched fresh from the API (includes manual dashboard bookings)
 export async function getPublicAvailability({ dateISO, resourceId, config, domain, clientEmail }) {
-  // Create cache key
-  const identifier = clientEmail || domain || 'default';
-  const resource = resourceId || '';
-  const cacheKey = `${identifier}_${dateISO}_${resource}`;
-  
-  // Check cache first
-  const cached = getCachedAvailability(cacheKey);
-  if (cached) {
-    return cached;
-  }
-  
   try {
-    console.log("🔌 Calling availability API:", { date: dateISO, resourceId, clientEmail });
-    const resp = await httpGet(`/public/bookings/availability`, {
-      date: dateISO,
-      resourceId,
-      domain,
-      clientEmail,
-    });
-    console.log("✅ Availability API response:", resp);
+    const resp = await httpGet(
+      `/public/bookings/availability`,
+      {
+        date: dateISO,
+        resourceId,
+        domain,
+        clientEmail,
+      },
+      { noStore: true }
+    );
     if (Array.isArray(resp?.slots)) {
-      // Cache the result
-      setCachedAvailability(cacheKey, resp.slots);
       return resp.slots;
     }
   } catch (e) {
